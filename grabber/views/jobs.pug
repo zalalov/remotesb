@@ -1,0 +1,7 @@
+extends layout
+
+include job
+
+block content
+    each item in items
+        +job(item)
