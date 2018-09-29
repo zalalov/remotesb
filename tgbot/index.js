@@ -7,7 +7,7 @@ let schedule = require('node-schedule');
 const token = process.env.BOT_TOKEN;
 
 if (!token) {
-    console.error('BOT_TOKEN environment variable isn\'t specified.');
+    console.error('TELEGRAM_BOT_TOKEN environment variable isn\'t specified.');
     process.exit(1);
 }
 
