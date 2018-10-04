@@ -1,8 +1,15 @@
-export class MoiKrugFetcher {
+const axios = require("axios");
+const Parser = require('rss-parser');
+
+class MoiKrugFetcher {
     async fetch(limit=10) {
         // Get RSS
-        let url = this.buildUrl({page: 1});
-        let response = await axios.get();
+        let response = await axios.get("https://moikrug.ru/vacancies/rss", {
+            params: {
+                remote: 1,
+                page: 1
+            }
+        });
 
         // Parse RSS
         let parser = new Parser();
@@ -12,13 +19,13 @@ export class MoiKrugFetcher {
         let jobs = [];
 
         if (data.items && !!data.items.length) {
-            jobs = data.items.map((item) => {
+            jobs = data.items[0].map((item) => {
                 return item;
             });
         }
 
-        res.render('jobs', {
-            items: jobs
-        });
+        return jobs;
     }
-}
+};
+
+module.exports = MoiKrugFetcher;

@@ -1,4 +1,4 @@
-export class MoiKrugFetcher {
+class HHFetcher {
     async fetch(limit=10) {
         return [
             {
@@ -8,4 +8,6 @@ export class MoiKrugFetcher {
             }
         ]
     }
-}
+};
+
+module.exports = HHFetcher;

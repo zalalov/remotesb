@@ -1,17 +1,23 @@
 #!/usr/local/bin/node
 
 let schedule = require("node-schedule");
-let MoiKrug = require("./app/fetchers/moikrug");
-let HH = require("./app/fetchers/hh");
+const MoiKrugFetcher = require("./app/fetchers/moikrug");
+const HHFetcher = require("./app/fetchers/hh");
 
 let fetchers = [
-    MoiKrug,
-    HH
+    new MoiKrugFetcher(),
+    // new HHFetcher()
 ];
 
-schedule.scheduleJob("30 * * * *", () => {
-    let jobs = fetchers.map(async (fetcher) => {
+schedule.scheduleJob("*/5 * * * * *", async () => {
+    console.log('5 seconds event was started.');
+
+    let jobsPromises = fetchers.map(async (fetcher) => {
         return await fetcher.fetch();
+    });
+
+    let jobs = await Promise.all(jobsPromises).then(values => {
+        return values;
     });
 
     console.log(jobs);
