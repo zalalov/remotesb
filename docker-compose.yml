@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  tgbot:
+    container_name: tgbot
+    build: ./tgbot
+    env_file:
+        - tgbot/.env
+    restart: unless-stopped
+    networks:
+        - remotesb
+
+networks:
+    remotesb:
+        driver: bridge
