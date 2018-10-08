@@ -5,11 +5,9 @@ const JobsController = require('../controllers/jobs');
 
 let jobsController = new JobsController();
 
-router.get('/:id', (req, res) => {
-    res.json(JobsController.get(req.params.id));
-});
-
 router.post('/', (req, res) => {
+    jobsController.create(req.body);
+
     res.json({
         status: 200
     });
