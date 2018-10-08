@@ -6,6 +6,7 @@ let DB_PASSWORD = process.env.DB_PASSWORD;
 let DB_HOST = process.env.DB_PASSWORD;
 let DB_PORT = process.env.DB_PORT;
 let DB_NAME = process.env.DB_NAME;
+let DB_COLLECTION_NAME = process.env.DB_COLLECTION_NAME;
 
 let dbUrl = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 let mongoDB = process.env.MONGODB_URI || dbUrl;
