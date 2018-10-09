@@ -1,4 +1,4 @@
-let Job = require("../models/job");
+let Job = require('../models/job');
 
 class JobsController {
     create(jobItem) {
@@ -18,31 +18,16 @@ class JobsController {
             );
 
             job.save((err) => {
-
                 if (err) {
-                    console.log(err);
-                    console.log("ERROR");
-                    reject(Error("Unable to save job item."))
+                    reject(Error('Unable to save job item.'))
                 } else {
-                    console.log("RESOLVED");
                     resolve();
                 }
             });
         });
     }
 
-    list(limit = 10) {
-        return [
-            {
-                id: 1,
-                title: "title"
-            },
-            {
-                id: 2,
-                title: "title"
-            }
-        ];
-    }
+    list(limit = 10) {}
 
     update(id, fields) {}
 
