@@ -6,11 +6,16 @@ const JobsController = require('../controllers/jobs');
 let jobsController = new JobsController();
 
 router.post('/', (req, res) => {
-    jobsController.create(req.body);
+    jobsController.create(req.body)
+        .then(() => {
+            res.status(200).json();
+        })
+        .catch(() => {
+            res.status(400).json({
+                message: "Unable to save item."
+            });
+        });
 
-    res.json({
-        status: 200
-    });
 });
 
 router.put('/:id', (req, res) => {
