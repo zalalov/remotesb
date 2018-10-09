@@ -11,7 +11,7 @@ let DB_COLLECTION_NAME = process.env.DB_COLLECTION_NAME;
 let dbUrl = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 let mongoDB = process.env.MONGODB_URI || dbUrl;
 
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 
 let db = mongoose.connection;
