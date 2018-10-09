@@ -16,6 +16,17 @@ let jobSchema = new Schema({
     service_link: {type: String, required: true},
 });
 
+jobSchema.post('save', function (error, doc, next) {
+    if (error.name === 'MongoError' && error.code === 11000) {
+        next(new Error('Job item already exists.'));
+    } else {
+
+        console.log(`Job item saving post error handling: ${error}`);
+
+        next(new Error('Unknown error.'));
+    }
+});
+
 let Job = mongoose.model('Job', jobSchema);
 
 module.exports = Job;
