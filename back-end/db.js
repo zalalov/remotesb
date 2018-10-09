@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 let DB_USER = process.env.DB_USER;
 let DB_PASSWORD = process.env.DB_PASSWORD;
-let DB_HOST = process.env.DB_PASSWORD;
+let DB_HOST = process.env.DB_HOST;
 let DB_PORT = process.env.DB_PORT;
 let DB_NAME = process.env.DB_NAME;
 let DB_COLLECTION_NAME = process.env.DB_COLLECTION_NAME;
