@@ -5,10 +5,19 @@ services:
     container_name: tgbot
     build: ./tgbot
     env_file:
-        - tgbot/.env
+      - tgbot/.env
     restart: unless-stopped
     networks:
-        - remotesb
+      - remotesb
+
+  backend:
+    container_name: backend
+    build: ./back-end
+    env_file:
+      - backend/.env
+    restart: unless-stopped
+    networks:
+      -remotesb
 
 networks:
     remotesb:
