@@ -10,9 +10,9 @@ router.post('/', (req, res) => {
         .then(() => {
             res.status(200).json();
         })
-        .catch(() => {
+        .catch((err) => {
             res.status(400).json({
-                message: 'Unable to save item.'
+                message: err.message,
             });
         });
 
