@@ -19,7 +19,7 @@ class JobsController {
 
             job.save((err) => {
                 if (err) {
-                    reject(Error('Unable to save job item.'))
+                    reject(err)
                 } else {
                     resolve();
                 }
