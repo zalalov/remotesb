@@ -11,7 +11,7 @@ let jobSchema = new Schema({
     title: {type: String, required: true},
     description: {type: String, required: true},
     company: {type: String, required: true},
-    created_at: Date,
+    created_at: {type: Date, default: Date.now()},
     updated_at: Date,
     posted_at: Date,
 
