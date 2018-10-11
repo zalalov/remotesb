@@ -27,7 +27,9 @@ class JobsController {
         });
     }
 
-    list(limit = 10) {}
+    get(limit = 10) {
+        return Job.find().sort({"created_at": -1}).limit(10).exec();
+    }
 
     update(id, fields) {}
 
