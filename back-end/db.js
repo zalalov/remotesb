@@ -9,9 +9,19 @@ let DB_NAME = process.env.DB_NAME;
 let DB_COLLECTION_NAME = process.env.DB_COLLECTION_NAME;
 
 let dbUrl = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+
+console.log(`Connecting to: ${dbUrl}`);
+
 let mongoDB = process.env.MONGODB_URI || dbUrl;
 
-mongoose.connect(mongoDB, {useNewUrlParser: true});
+mongoose.connect(
+    mongoDB,
+    {
+        useNewUrlParser: true,
+        reconnectTries: 10,
+        connectTimeoutMS: 10000,
+        reconnectInterval: 1000
+    });
 mongoose.Promise = global.Promise;
 
 let db = mongoose.connection;
