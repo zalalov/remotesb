@@ -25,6 +25,29 @@ router.get('/', (req, res) => {
 });
 
 /**
+ * Get item by id
+ */
+router.get('/:id', (req, res) => {
+    let jobsController = new JobsController();
+
+    jobsController.getById(req.params.id)
+        .then(
+            (item) => {
+                if (!item) {
+                    res.status(404).json({});
+                } else {
+                    res.status(200).json({
+                        job: item
+                    });
+                }
+            },
+            (err) => {
+                res.status(500).json({});
+            }
+        );
+});
+
+/**
  * Create job item
  */
 router.post('/', (req, res) => {
