@@ -13,5 +13,5 @@ if (!token) {
 const bot = new TelegramBot(token, {polling: true});
 
 schedule.scheduleJob('*/5 * * * * *', async () => {
-    await bot.sendMessage('@remoterstest', 'Money.');
+    await bot.sendMessage('@remoterstest', (new Date).toTimeString());
 });
