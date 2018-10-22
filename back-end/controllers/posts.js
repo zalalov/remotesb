@@ -4,22 +4,12 @@ class PostsController {
     }
 
     fetch(limit) {
-        return new Promise((resolve, reject) => {
-
-        });
-    }
-
-    get(limit = 10) {
-        return Job.find().sort({"created_at": -1}).limit(10).exec();
+        return [];
     }
 
     getById(id) {
-        return Job.findById(id).exec();
+        return {};
     }
-
-    update(id, fields) {}
-
-    delete(id) {}
 }
 
 module.exports = PostsController;

@@ -8,6 +8,7 @@ let bodyParser = require('body-parser');
 let jobs = require('./routes/jobs');
 let posts = require('./routes/posts');
 let db = require('./db');
+let tg = require('./tg');
 
 let app = express();
 
