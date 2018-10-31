@@ -1,14 +1,10 @@
+let tgClient = require('../tg');
+
 class PostsController {
-    constructor(client) {
-        this._client = client;
-    }
-
-    fetch(limit) {
-        return [];
-    }
-
-    getById(id) {
-        return {};
+    getFeed(channels) {
+        return channels.map((channel) => {
+            return tgClient.getMessagesByChatName(channel);
+        });
     }
 }
 

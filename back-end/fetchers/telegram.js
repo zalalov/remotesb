@@ -1,6 +1,6 @@
 const {Client} = require('tdl');
 
-class TelegramClient {
+class TelegramFetcher {
     constructor(apiId = process.env.TELEGRAM_API_ID, apiHash = process.env.TELEGRAM_API_HASH) {
         this.client = new Client({
             apiId: apiId,
@@ -54,4 +54,4 @@ class TelegramClient {
     }
 }
 
-module.exports = TelegramClient;
+module.exports = TelegramFetcher;
