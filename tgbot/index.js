@@ -12,6 +12,6 @@ if (!token) {
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
 
-schedule.scheduleJob('*/5 * * * * *', async () => {
-    await bot.sendMessage('@remoterstest', (new Date).toTimeString());
-});
+// schedule.scheduleJob('*/5 * * * * *', async () => {
+//     await bot.sendMessage('@remoterstest', (new Date).toTimeString());
+// });
