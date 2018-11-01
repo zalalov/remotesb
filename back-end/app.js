@@ -5,6 +5,7 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
+let index = require('./routes/index');
 let jobs = require('./routes/jobs');
 let posts = require('./routes/posts');
 let channels = require('./routes/channel');
@@ -25,6 +26,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', index);
 app.use('/jobs/', jobs);
 app.use('/posts/', posts);
 app.use('/channels/', channels);
