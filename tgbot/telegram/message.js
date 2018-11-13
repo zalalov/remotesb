@@ -1,3 +1,5 @@
+const TelegramFile = require('./file');
+
 class Message {
     constructor(message) {
         this.message = message;
@@ -6,10 +8,6 @@ class Message {
     postToChannel(channelName, botInstance) {}
 
     getMaxSizePhotoFileId() {
-        if (!this.message.photo) {
-            return null;
-        }
-
         let maxSizePhoto = {
             file_size: -1
         };
@@ -25,6 +23,19 @@ class Message {
         }
 
         return maxSizePhoto.file_id;
+    }
+
+    async parsePhoto() {
+        if (!this.message.photo) {
+            return null;
+        }
+
+        let file_id = this.getMaxSizePhotoFileId();
+
+        if (file_id) {
+            let telegramFile = new TelegramFile(file_id);
+            let file = await telegramFile.getFile();
+        }
     }
 }
 

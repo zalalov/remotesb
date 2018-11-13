@@ -10,40 +10,53 @@ class File {
         }
     }
 
-    buildUrl(type, ...args) {
+    buildUrl(type, data) {
         switch (type) {
             case 'path':
-                if (!args.hasOwnProperty('file_id')) {
-                    return new Error('file_id argument has to be specified')
+                if (!data.hasOwnProperty('file_id')) {
+                    return new Error('file_id argument has to be specified');
                 }
 
-                return `https://api.telegram.org/bot${this.bot_token}/getFile?file_id=${args['file_id']}`;
+                return `https://api.telegram.org/bot${this.bot_token}/getFile?file_id=${data['file_id']}`;
 
             case 'file':
-                if (!args.hasOwnProperty('file_path')) {
+                if (!data.hasOwnProperty('file_path')) {
                     return new Error('file_path argument has to be specified')
                 }
 
-                return `https://api.telegram.org/file/bot${this.bot_token}/${args['file_path']}`;
+                return `https://api.telegram.org/file/bot${this.bot_token}/${data['file_path']}`;
 
             default:
                 return new Error('Unknown URL type.')
         }
     }
 
-    parsePath() {}
+    parsePath(response) {
+        if (response.hasOwnProperty('data') &&
+            response.data.hasOwnProperty('result') &&
+            response.data.result.hasOwnProperty('file_path')
+        ) {
+            return response.data.result.file_path;
+        }
 
-    getPath(file_id) {
-        return new Promise((resolve, reject) => {
-            axios.get(this.buildUrl('path', {file_id: file_id}))
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        });
+        return null;
+    }
+
+    getPath() {
+        return axios.get(this.buildUrl('path', {file_id: this.file_id}));
+    }
+
+    requestFile(url) {
+        return axios.get(url);
+    }
+
+    getFile() {
+        return this.getPath()
+            .then(this.parsePath)
+            .then(path => this.buildUrl('file', {file_path: path}))
+            .then(this.requestFile);
     }
 }
 
+// module.exports = File;
 module.exports = File;
