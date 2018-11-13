@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  tgbot:
+    container_name: tgbot
+    build:
+      context: ./tgbot
+      dockerfile: Dockerfile-dev
+    env_file:
+      - tgbot/.env
+    restart: unless-stopped
+    networks:
+      - remotesb
+    volumes:
+       - ./tgbot:/tgbot
+
+networks:
+    remotesb:
+        driver: bridge
