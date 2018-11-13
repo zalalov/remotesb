@@ -10,15 +10,6 @@ services:
     networks:
       - remotesb
 
-  backend:
-    container_name: backend
-    build: ./back-end
-    env_file:
-      - backend/.env
-    restart: unless-stopped
-    networks:
-      -remotesb
-
 networks:
     remotesb:
         driver: bridge
